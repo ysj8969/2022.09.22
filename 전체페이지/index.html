@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+	<style>
+		@charset "UTF-8";
+* {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans KR', sans-serif;}
+ul,li,ol {list-style: none; margin:0; padding:0;}
+a {text-decoration: none;}
+.btn_main {width: 130px; line-height: 36px; margin-right: 10px; padding: 0; background-color: #444; color: #fff; border: 1px solid #444; font-size: 16px; text-align: center; cursor: pointer; transition: all 0.3s;}
+.btn_main:hover {background-color: #fff; color: #444; border: 1px solid #444;}
+.btn_sub {width: 130px; line-height: 36px; margin-right: 10px; padding: 0; background-color: #444; color: #fff; border: 1px solid #444; font-size: 16px; text-align: center; cursor: pointer; transition: all 0.3s;}
+.btn_sub:hover {background-color: #fff; color: #444; border: 1px solid #444;}
+
+body {width: 100%; height: 100vh; -scroll:0; overflow-x: hidden; background: #fff;}
+body::-webkit-scrollbar { width: 8px; height: 15px; background: #fff; }
+body::-webkit-scrollbar-thumb { border-radius: 10px; background-color: #fbb03b;}
+body::-webkit-scrollbar-track { background: #ffffff; }
+
+/* right icon menu */
+#menu {width:70px; height:340px; position:fixed; z-index: 5; right:0; top:50%; transform: translateY(-50%); display: flex; flex-wrap: wrap; align-content: space-between;}
+#menu > li {width: 70px; height: 52px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; background-color: #444; color: #999; border-radius: 10px 0 0 10px; font-size: 10px; font-weight: 300; cursor: pointer;}
+#menu > li a {font-size: 20px; color: #fbb03b; transition: all 0.25s;}
+#menu > li:hover a {color: #fff;}
+
+/* main start */
+#fullpage {margin: 0; padding: 0; position: relative;}
+
+/* section 1 : home */
+#fullpage > .section-01 {width: 100%; margin:0 auto; overflow: hidden; position: relative; background-color: #333;}
+
+/* 포트폴리오 레이아웃*/
+.bodywrap {width:1340px; height:100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;}
+.introduce {width: 40%; height: 700px; display: flex; flex-flow: row wrap; justify-content: flex-start; align-content: space-between;}
+.webpage {width: 60%; height: 100%; overflow: hidden; position: relative;}
+.webpage img {width: 100%; height: auto;}
+
+.bodywrap h1 {width: 100%; font-size: 44px; font-weight: 400; margin-bottom: 50px; color: #444; letter-spacing: -0.5px;}
+.bodywrap h1 em {font-style: normal; font-weight: 900;}
+.bodywrap h4 {width: 100%; font-size: 18px; font-weight: 400; color: #444; margin-bottom: 50px;}
+.bodywrap h5 {width: 100%; font-size: 16px; font-weight: 700; color: #444; letter-spacing: 0.5px; line-height: 10px;}
+.bodywrap p {width: 100%; height: 320px; font-size: 14px; font-weight: 300; color: #444; line-height: 160%;}
+
+/* web 슬라이드*/
+.webpage .bhoverbox {width: 100%; height: 100%; cursor: pointer; position: absolute; z-index: 2; top:0; transition: 0.3s ease-in-out; display: flex; justify-content: center; align-items: center;}
+
+.webpage .bhoverbox > i {width: 34px; line-height: 30px; font-size:20px; color: #fbb03b; border: 2px solid #fbb03b; border-radius: 500px; text-align: center; display: none;}
+.webpage .bhoverbox:hover {background-color: rgba(0,0,0,0.3)}
+.webpage .bhoverbox:hover > i {display: block;}
+
+/* section 1 : home */
+#fullpage > .section-01 {width: 100%; height: 100%; position: relative; display: flex; justify-content: space-between;}
+
+.section-01 #homeleft_grid {width: 70%; height: 100%; position: relative;}
+.section-01 #homeleft_grid .typo {position: absolute; right: -23px; top: 50%; transform: translateY(-50%); height: 320px; z-index: 5;}
+.section-01 #homeleft_grid .typo img {height: 100%;}
+
+#about {position: absolute; top: 5%; left: 5%; height: 90%; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;}
+#about h3 {color: #fbb03b; font-size: 16px; font-weight: 300;}
+#about h3 em {font-style: normal; font-weight: 600;}
+
+.about_icon > li {background-color: #fbb03b; border-radius: 100px; cursor: pointer; position: relative; text-align: center; margin-bottom: 8px; z-index: 3;}
+.about_icon > li a {width: 40px; height: 40px; display: flex; justify-content: center; align-items: center; color: #333; font-size: 22px; transition: all 0.3s; }
+.about_icon > li:hover a {color: #fff;}
+
+.burble {display: none;}
+.burble li {position: absolute; top: 10px; left: 120px; transform: translateX(-50%); width: 140px; background-color: #fbb03b; color: #333; font-size: 12px; font-weight: 400; text-align: center; line-height: 20px; border-radius: 100px;}
+
+/* Typing */
+.typingbox {width: 490px; text-align: left; position: absolute; right: 0; top: 50%; transform: translateY(-50%);}
+.typing-txt{display: none;}
+.typeing-txt ul{list-style:none;}
+.typing {display: inline-block; animation-name: cursor; animation-duration: 0.3s; animation-iteration-count: infinite; font-size: 21px; font-weight: 400; color: #fbb03b;}
+
+@keyframes cursor{ 0%{border-right: 1px solid #fff} 50%{border-right: 1px solid #000} 100%{border-right: 1px solid #fff} }
+
+.section-01 #homeright_grid {width: 30%; background-color: #fbb03b; position: relative;}
+.section-01 #homeright_grid .typo {position: absolute; left: 4%; top: 50%; transform: translateY(-50%); height: 320px; display: flex; justify-content: flex-end; align-items: flex-end; z-index: 5;}
+
+
+/* section 2 : 프로젝트1 */
+#fullpage > .section-02 {width: 100%; height: 100%; background-color: rgb(239,219,178,0.2);}
+.section-02 h2 {width: 100%; font-size: 26px; font-weight: 900; color: #947555; letter-spacing: 0.5px;}
+.section-02 .color {width: 100%; height: 80px; display: flex; flex-flow: row wrap; justify-content: flex-start; align-items: center; margin-bottom: 40px;}
+.section-02 .color li {width:40px; height:40px; border-radius:50%; margin-right: 10px;}
+.section-02 .color li:first-of-type {background-color: #947555;}
+.section-02 .color li:nth-of-type(2) {background-color: royalblue;}
+.section-02 .color li:last-of-type {background-color: #ddd;}
+
+/* section 3 : 프로젝트2 */
+#fullpage > .section-03 {width: 100%; margin: 0 auto; background-color: #eee;}
+.section-03 h2 {width: 100%; font-size: 26px; font-weight: 900; color: #5e1dfd; letter-spacing: 0.5px;}
+.section-03 .color {width: 100%; height: 80px; display: flex; flex-flow: row wrap; justify-content: flex-start; align-items: center; margin-bottom: 40px;}
+.section-03 .color li {width:40px; height:40px; border-radius:50%; margin-right: 10px;}
+.section-03 .color li:first-of-type {background-color: #5e1dfd;}
+.section-03 .color li:nth-of-type(2) {background-color: #1b1b1b;}
+.section-03  .color li:last-of-type {background-color: #ddd;}
+
+.section-03 .mobile {width: 235px; height: 520px; position: absolute; bottom: 5%; left: 44%; display: block; transform: translateX(-50%); z-index:5; background-image: url(../img/mobile-01.png); background-size: 100% 100%;}
+.section-03 .mobile_box {width: 225px; height: 510px; position: absolute; top: 50%; left: 50.6%; transform: translate(-50%,-50%); border-radius: 28px; overflow: hidden;}
+.section-03 .mobile_box ul li {width: 225px; height: 510px;}
+.section-03 .mobile_box ul li img {width: 100%; height: auto;}
+
+/* section 4 : 프로젝트3 */
+#fullpage > .section-04 {width: 100%; margin: 0 auto; background-color: rgb(239,219,178,0.2);}
+.section-04 h2 {width: 100%; font-size: 26px; font-weight: 900; color: #0c4e4a; letter-spacing: 0.5px;}
+.section-04 .color {width: 100%; height: 80px; display: flex; flex-flow: row wrap; justify-content: flex-start; align-items: center; margin-bottom: 40px;}
+.section-04 .color li {width:40px; height:40px; border-radius:50%; margin-right: 10px;}
+.section-04 .color li:first-of-type {background-color: gold;}
+.section-04 .color li:nth-of-type(2) {background-color: #0c4e4a;}
+.section-04 .color li:last-of-type {background-color: #666;}
+
+.section-04 .pofomobile {width: 235px; height: 520px; position: absolute; bottom: 5%; left: 44%; display: block; transform: translateX(-50%); z-index:5; background-image: url(../img/mobile-01.png); background-size: 100% 100%;}
+.section-04 .pofomobile_box {width: 225px; height: 510px; position: absolute; top: 50%; left: 50.6%; transform: translate(-50%,-50%); border-radius: 28px; overflow: hidden;}
+.section-04 .pofomobile_box ul li {width: 225px; height: 510px;}
+.section-04 .pofomobile_box ul li img {width: 100%; height: auto;}
+
+/* section 5 : 프로젝트4 */
+#fullpage > .section-05 {width: 100%; margin: 0 auto; background-color: #eee;}
+.section-05 h2 {width: 100%; font-size: 26px; font-weight: 900; color: #4b0082; letter-spacing: 0.5px;}
+.section-05 .color {width: 100%; height: 80px; display: flex; flex-flow: row wrap; justify-content: flex-start; align-items: center; margin-bottom: 40px;}
+.section-05 .color li {width:40px; height:40px; border-radius:50%; margin-right: 10px;}
+.section-05 .color li:first-of-type {background-color: #4b0082;}
+.section-05 .color li:nth-of-type(2) {background-color: #333;}
+.section-05 .color li:last-of-type {background-color: #dfd5cb;}
+
+/* section 6 : About Me */
+#fullpage > .section-06 {width: 100%; margin: 0 auto; position: relative; background-color: #333;}
+.section-06 .profile_wrap {width: 1340px; height: 100%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;}
+
+/*이력서*/
+.section-06 .resume {width: 920px; height: 700PX; display: flex; flex-flow: row wrap; justify-content: space-between; align-content: space-between;}
+.section-06 .resume h1 {width: 100%; font-size: 44px; font-weight: 400; color: #fbb03b; letter-spacing: -0.5px;}
+.section-06 .resume h1 em {font-style: normal; font-weight: 900;}
+
+.section-06 .graph {width: 100%; height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center;}
+.section-06 .graph p {color: #fff; font-size: 16px; font-weight: 300; letter-spacing: 6px;}
+.section-06 .graph_line {width: 80%;}
+.section-06 .graph_line img {width: 100%;}
+
+.section-06 .career {height: 200px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;}
+.section-06 .career h3 {width: 100%; color: #fff; font-size: 16px; border-bottom: 1px solid #fff; margin-bottom: 6px;}
+.section-06 .career p {color: #fff; font-size: 14px; font-weight: 200;}
+.section-06 .career p span {color: #fff; font-size: 12px; font-weight: 200; line-height: 180%;}
+.section-06 .career table {color: #fff; text-align: left; border-collapse: collapse; letter-spacing: 0.5px;}
+.section-06 .career table th {font-size: 14px; font-weight: 400;}
+.section-06 .career table td {width: 120px; font-size: 13px; font-weight: 300; color: #999; line-height: 200%;}
+
+#skill {margin-top: 8px;}
+#skill td {width: auto;}
+.webicon {height: 58px; padding: 0 14px 6px 0;}
+.webicon img {height: 100%;}
+.other {height: 50px;}
+.other:nth-of-type(3) {height: 36px;}
+.other img {height: 100%;}
+.symbol {height: 44px; padding-top: 6px}
+.symbol:last-of-type {padding-right: 0;}
+.symbol img {height: 100%;}
+
+/*프로필*/
+.section-06 .profile {width: 360px; height: 100%; display: flex; justify-content: center; align-items: center; background-color: #444;}
+.section-06 .myphoto {width: 280px; height: 700PX; display: flex; flex-direction: column; justify-content: space-between; align-items: center;}
+
+.section-06 .profileimg {width: 220px;}
+.section-06 .profileimg img {width: 100%;}
+
+.section-06 .profiletxt h3 {font-size: 22px; font-weight: 400; line-height: 120%; color: #fbb03b; }
+.section-06 .profiletxt h3 em {font-size: 15px; font-weight: 300; font-style: normal;}
+.section-06 .profiletxt table {font-size: 13px; text-align: left; letter-spacing: 0.5px; line-height: 180%; margin-bottom: 90px; color: #fff;}
+.section-06 .profiletxt table th {width: 92px; vertical-align: top; font-weight: 400;}
+.section-06 .profiletxt table td {font-weight: 200;}
+.section-06 .profiletxt h5 {font-size: 13px; font-weight: 300; color: #fbb03b;}
+.section-06 .profiletxt h5 em {font-weight: 600; font-style: normal;}
+.section-06 .profiletxt p {font-size: 12px; font-weight: 200; color: #999; letter-spacing: -0.5px;}
+
+
+/* ---- reset ---- */
+
+body {
+  margin: 0;
+  font:normal 75% Arial, Helvetica, sans-serif;
+}
+
+canvas {
+  display: block;
+  vertical-align: bottom;
+}
+
+/* ---- particles.js container ---- */
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+  z-index: 1;
+}
+
+/* ---- stats.js ---- */
+
+.js-count-particles{
+  font-size: 1.1em;
+}
+
+#stats,
+.count-particles{
+  -webkit-user-select: none;
+}
+
+#stats{
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+
+.count-particles{
+  border-radius: 0 0 3px 3px;
+}
+	</style>
+</head>
+
+<script>
+	window.onload = function () {
+    /* ---- particles.js config ---- */
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 80,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#ffffff"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+                "polygon": {
+                    "nb_sides": 5
+                },
+                "image": {
+                    "src": "img/github.svg",
+                    "width": 100,
+                    "height": 100
+                }
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": false,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 40,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": true,
+                "distance": 130,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 1
+            },
+            "move": {
+                "enable": true,
+                "speed": 4,
+                "direction": "none",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": true,
+                    "mode": "repulse"
+                },
+                "onclick": {
+                    "enable": true,
+                    "mode": "push"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 800,
+                    "line_linked": {
+                        "opacity": 1
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 40,
+                    "duration": 2,
+                    "opacity": 1,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 4
+                }
+            }
+        },
+        "retina_detect": true
+    });
+
+
+    /* ---- stats.js config ---- */
+
+    var count_particles, stats, update;
+    stats = new Stats;
+    stats.setMode(0);
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild(stats.domElement);
+    count_particles = document.querySelector('.js-count-particles');
+    update = function () {
+        stats.begin();
+        stats.end();
+        if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+            count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+        }
+        requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+}
+
+</script>
+
+<script>
+	$(function(){
+        var typingBool = false; 
+        var typingIdx=0; 
+        var liIndex = 0;
+        var liLength = $(".typing-txt>ul>li").length;
+
+        // 타이핑될 텍스트를 가져온다 
+        var typingTxt = $(".typing-txt>ul>li").eq(liIndex).text(); 
+        typingTxt=typingTxt.split(""); // 한글자씩 자른다. 
+        if(typingBool==false){ // 타이핑이 진행되지 않았다면 
+          typingBool=true; 
+          var tyInt = setInterval(typing,100); // 반복동작 
+        } 
+
+        function typing(){ 
+          if(typingIdx<typingTxt.length){ // 타이핑될 텍스트 길이만큼 반복 
+            $(".typing").append(typingTxt[typingIdx]); // 한글자씩 이어준다. 
+            typingIdx++; 
+          } else{ //한문장이끝나면
+            //다음문장으로.. 마지막문장이면 다시 첫번째 문장으로 
+            if(liIndex>=liLength-1){
+              liIndex=0;
+            }else{
+              liIndex++; 
+            }
+
+            //다음문장을 타이핑하기위한 셋팅
+            typingIdx=0;
+            typingBool = false; 
+            typingTxt = $(".typing-txt>ul>li").eq(liIndex).text(); 
+
+            //다음문장 타이핑전 1초 쉰다
+            clearInterval(tyInt);
+            setTimeout(function(){
+              $(".typing").html('');
+              tyInt = setInterval(typing,100);
+            },1000);
+          } 
+        }  
+
+})
+
+</script>
+
+<script>
+	$(function() {
+    new fullpage("#fullpage", {
+        sectionsColor: [],
+        verticalCentered: false,
+        scrollBar: true,
+        anchors: ['anchor1', 'anchor2', 'anchor3', 'anchor4', 'anchor5', 'anchor6'],
+        menu: '#menu',
+        scrollingSpeed: 300,
+    });
+})
+
+</script>
+<script>
+	$(function(){
+    //반디앤루니스
+    $("#bandibox").mouseenter(function(){
+        $("#bandi > li").stop().animate({marginTop:"-1150px"},8000)
+    }).mouseleave(function(){
+        $("#bandi > li").stop().animate({marginTop:"0px"},3000)
+    })
+    
+    //댄스스튜디오
+    $("#dancbox").mouseenter(function(){
+        $("#danc > li").stop().animate({marginTop:"-1150px"},8000)
+    }).mouseleave(function(){
+        $("#danc > li").stop().animate({marginTop:"0px"},3000)
+    })
+    
+    //POFO
+    $("#pofobox").mouseenter(function(){
+        $("#pofo > li").stop().animate({marginTop:"-1150px"},8000)
+    }).mouseleave(function(){
+        $("#pofo > li").stop().animate({marginTop:"0px"},3000)
+    })
+    
+    //푸드스토어
+    $("#foodbox").mouseenter(function(){
+        $("#food > li").stop().animate({marginTop:"-1150px"},8000)
+    }).mouseleave(function(){
+        $("#food > li").stop().animate({marginTop:"0px"},3000)
+    })
+})
+
+</script>
+<script>
+	$(function(){
+    function mobile1(){
+        $(".mobile > .mobile_box > ul").stop().animate({marginTop:-510},function(){
+        $(".mobile > .mobile_box > ul > li:first").appendTo(".mobile > .mobile_box > ul")
+        $(".mobile > .mobile_box > ul").css({marginTop:0})
+        })
+    }
+    setInterval(mobile1,3000);
+
+    function mobile2(){
+        $(".pofomobile > .pofomobile_box > ul").stop().animate({marginTop:-510},function(){
+        $(".pofomobile > .pofomobile_box > ul > li:first").appendTo(".pofomobile > .pofomobile_box > ul")
+        $(".pofomobile > .pofomobile_box > ul").css({marginTop:0})
+        })
+    }
+    setInterval(mobile2,3000);
+})
+
+</script>
+<script>
+	$(function () {
+    $(".about_icon > li").mouseover(function () {
+        $(this).children(".burble").stop().fadeIn();
+    }).mouseout(function () {
+        $(".burble").stop().hide();
+    });
+})
+	
+</script>
+
+
+
+
+<body>
+    <!--right icon menu-->
+    <ul id="menu">
+        <li data-menuanchor="anchor1">
+            <a href="#anchor1"><i class="fas fa-laptop-code"></i></a>
+            <span>Home</span>
+        </li>
+        <li data-menuanchor="anchor2">
+            <a href="#anchor2"><i class="fas fa-pencil-ruler"></i></a>
+            <span>Project 01</span>
+        </li>
+        <li data-menuanchor="anchor3">
+            <a href="#anchor3"><i class="fas fa-ruler-combined"></i></a>
+            <span>Project 02</span>
+        </li>
+        <li data-menuanchor="anchor4">
+            <a href="#anchor4"><i class="fas fa-crop-alt"></i></a>
+            <span>Project 03</span>
+        </li>
+        <li data-menuanchor="anchor5">
+            <a href="#anchor5"><i class="fas fa-swatchbook"></i></a>
+            <span>Project 04</span>
+        </li>
+        <li data-menuanchor="anchor6">
+            <a href="#anchor6"><i class="fas fa-layer-group"></i></a>
+            <span>About Me</span>
+        </li>
+    </ul>
+    
+    <div id="fullpage">        
+        <!--section 1 : home-->
+        <div class="section section-01">
+            <!-- particles.js container -->
+            <div id="particles-js"></div>
+            
+            <div id="homeleft_grid">
+                <div id="about">
+                    <ul class="about_icon">
+                        <li><a href="#"><i class="far fa-address-card"></i></a>
+                            <ul class="burble">
+                                <li>한아름 / Han A Reum</li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="fas fa-mobile-alt"></i></a>
+                            <ul class="burble">
+                                <li>010-3341-8859</li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><i class="far fa-envelope"></i></a>
+                            <ul class="burble">
+                                <li>reddoll88@naver.com</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3><em>WEB</em> PUBLISHER </h3>
+                </div>
+               
+                <!--Typing-->
+                <div class="typingbox">
+                    <div class="typing-txt">
+                        <ul>
+                            <li>HTML / CSS / JAVA Script / J-QUERY / OPEN API</li>
+                        </ul>
+                    </div>
+                    <p class="typing"></p>
+                </div>
+                
+                <div class="typo"><img src="img/portfo.png" alt="포트폴"></div>
+            </div>
+            
+            <div id="homeright_grid">
+                <div class="typo"><img src="img/lio.png" alt="리오"></div>
+            </div>
+        </div>
+        
+        <!--section 2 : 프로젝트 01-->
+        <div class="section section-02">
+            <div class="bodywrap">
+                <div class="introduce">
+                    <h1>PROJECT <em>01</em></h1>
+                    <h2>BANDI and LUNIS</h2>
+                    <h4>Open API, Json</h4>
+                    <h5>POINT COLOR</h5>
+                    <ul class="color">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>국내에 굿디자인 인증마크를 소유한 웹 도서 사이트 "반디앤루니스"입니다.<br>
+                        페이지 내의 도서 내용들은 KaKao에서 제공하는 Open API를 사용하였습니다.<br><br>
+
+                        도서사이트의 특징인 많은 정보로 인하여 복잡한 레이아웃을<br>
+                        좀 더 간결하며 모던하게 재해석했습니다.<br><br>
+
+                        뿐만 아니라 정적인 느낌을 탈피하고, 더 많은 정보를 제공하고자<br>
+                        jQuery를 활용하여 네비게이션과 슬라이드를 접목시킨 상품 리스트, 게시판 등의<br>
+                        다양한 인터렉션 요소를 배치하였습니다.<br><br>
+
+                        도서를 구매할 수 있는 Sub Page도 함께 제작하였습니다.</p>
+                    <a href="portfolio/bandi/main.html" target="_blank" class="btn_main">MAIN PAGE</a>
+                    <a href="portfolio/bandi/sub.html" target="_blank" class="btn_sub">SUB PAGE</a>
+                </div>
+
+                <div class="webpage">
+                    <div class="bodyimg">
+                        <ul id="bandi">
+                            <li><img src="img/bandi_web.jpg" alt="web1"></li>
+                        </ul>
+                    </div>
+
+                    <div class="bhoverbox" id="bandibox" onclick="window.open('html_3/main.html')">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--section 3 : 프로젝트 02-->
+        <div class="section section-03">
+            <div class="bodywrap">
+                <div class="introduce">
+                    <h1>PROJECT <em>02</em></h1>
+                    <h2>Dance Studio</h2>
+                    <h4>Responsive Website</h4>
+                    <h5>POINT COLOR</h5>
+                    <ul class="color">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>다양한 종목의 춤을 배울 수 있는 댄스학원 홍보 웹사이트입니다.<br><br>
+                        스크롤이 내려가도 상단 네비게이션 이동이 용이하도록<br>
+                        Fixed Menu를 사용하였습니다.<br>
+                        모바일, 태블릿 사용자에 맞게 반응할 수 있도록<br>
+                        미디어 쿼리를 사용하여 반응형 웹페이지로 제작 되었습니다.<br><br>
+                        사선 레이아웃으로 활동적인 느낌을 주었으며,<br>
+                        독특한 색감으로 주목도를 높이는 것이 포인트입니다.<br><br>
+                        Sub Page를 블로그 형식으로 제작하여<br>
+                        강사진의 프로필 및 공연 내용을 상세하게 제공하고 있습니다.</p>
+                    <a href="portfolio/dance/main.html" target="_blank" class="btn_main">MAIN PAGE</a>
+                    <a href="portfolio/dance/sub.html" target="_blank" class="btn_sub">SUB PAGE</a>
+                </div>
+
+                <div class="mobile">
+                    <div class="mobile_box" onclick="window.open('html_3/main.html')">
+                        <ul>
+                            <li><img src="img/danc_mobile1.jpg" alt=""></li>
+                            <li><img src="img/danc_mobile2.jpg" alt=""></li>
+                            <li><img src="img/danc_mobile3.jpg" alt=""></li>
+                            <li><img src="img/danc_mobile4.jpg" alt=""></li>
+                            <li><img src="img/danc_mobile5.jpg" alt=""></li>
+                            <li><img src="img/danc_mobile6.jpg" alt=""></li>
+                            <li><img src="img/danc_mobile7.jpg" alt=""></li>
+                            <li><img src="img/danc_mobile8.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="webpage">
+                    <div class="bodyimg">
+                        <ul id="danc">
+                            <li><img src="img/danc_web.jpg" alt="web1"></li>
+                        </ul>
+                    </div>
+
+                    <div class="bhoverbox" id="dancbox" onclick="window.open('html_3/main.html')">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--section 4 : 프로젝트 03-->
+        <div class="section section-04">
+            <div class="bodywrap">
+                <div class="introduce">
+                    <h1>PROJECT <em>03</em></h1>
+                    <h2>POFO</h2>
+                    <h4>Responsive Website</h4>
+                    <h5>POINT COLOR</h5>
+                    <ul class="color">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>POFO는 해외 디자인 웹 에이전시입니다.<br>
+                        모바일, 태블릿, PC 사용자에 맞게 반응할 수 있도록<br>
+                        미디어쿼리를 사용하여 반응형 웹사이트로 제작되었습니다.<br><br>
+                        
+                        2021년 트렌드 컬러인 yellow색상을<br>
+                        짙은 darkgreen과 배색하여<br>
+                        편안하면서도 고급스러운 느낌을 연출합니다.<br><br>
+
+                        포트폴리오는 간결하게 나열함으로써 명시성에 중점을 두었으며,<br>
+                        블로그 형식의 Sub Page를 함께 제작하였습니다.</p>
+                    <a href="portfolio/pofo/main.html" target="_blank" class="btn_main">MAIN PAGE</a>
+                    <a href="portfolio/pofo/sub.html" target="_blank" class="btn_sub">SUB PAGE</a>
+                </div>
+
+                <div class="pofomobile">
+                    <div class="pofomobile_box" onclick="window.open('html_3/main.html')">
+                        <ul>
+                            <li><img src="img/POFO_mobile1.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile2.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile3.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile4.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile5.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile6.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile7.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile8.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile9.jpg" alt=""></li>
+                            <li><img src="img/POFO_mobile10.jpg" alt=""></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="webpage">
+                    <div class="bodyimg">
+                        <ul id="pofo">
+                            <li><img src="img/POFO_web.jpg" alt="web1"></li>
+                        </ul>
+                    </div>
+
+                    <div class="bhoverbox" id="pofobox" onclick="window.open('html_3/main.html')">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--section 5 : 프로젝트 04-->
+        <div class="section section-05">
+            <div class="bodywrap">
+                <div class="introduce">
+                    <h1>PROJECT <em>04</em></h1>
+                    <h2>FOOD STORE</h2>
+                    <h4>Shopping Mall</h4>
+                    <h5>POINT COLOR</h5>
+                    <ul class="color">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <p>Food Store는 맛있고 간편하게 식단관리 할 수 있도록<br>
+                        다이어트 식품을 판매하는 웹사이트입니다.<br><br>
+
+                        자칫 구매욕이 떨어질 수 있는 샐러드, 저칼로리 음식 등은<br>
+                        퀄리티가 높은 사진을 Select하여 단점을 보완하였습니다.<br><br>
+
+                        다이어트 식품 판매사이트에 맞게<br>
+                        식욕을 억제하는 색상인 보라색을 포인트 컬러로 사용했습니다.<br><br>
+
+                        상단 네비게이션 뿐만 아니라 사이트 내 많은 정보를<br>
+                        Footer에서도 쉽세 이동할 수 있도록 Quick Menu를 제공합니다.</p>
+                    <a href="portfolio/food/main.html" target="_blank" class="btn_main">MAIN PAGE</a>
+                    <a href="portfolio/food/sub.html" target="_blank" class="btn_sub">SUB PAGE</a>
+                </div>
+
+                <div class="webpage">
+                    <div class="bodyimg">
+                        <ul id="food">
+                            <li><img src="img/FoodStore_web.jpg" alt="web1"></li>
+                        </ul>
+                    </div>
+
+                    <div class="bhoverbox" id="foodbox" onclick="window.open('html_3/main.html')">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!--section 6 : About Me-->
+        <div class="section section-06">
+            <div class="profile_wrap">
+                <!--이력서-->
+                <div class="resume">
+                    <h1>ABOUT <em>ME</em></h1>
+                    
+                    <div class="graph">
+                        <p>“도전이&emsp;두렵지않은&emsp;그리고&emsp;성장하는”</p>
+                        <div class="graph_line"><img src="img/graph_line.png" alt="graph"></div>
+                    </div>
+                    
+                    <div class="career">
+                        <h3>LICENCE</h3>
+                        <p>컴퓨터 그래픽스 운용기능사<br>
+                        웹디자인 기능사(필기 합격)</p><br><br>                      
+                        <h3>TRAINING</h3>
+                        <p>더조은컴퓨터아트학원<br>
+                        <span>웹퍼블리셔 UI/UX 프론트엔드 양성과정 수료 (2021년)</span></p>
+                    </div>
+                    
+                    <div class="career">
+                        <h3>CAREER</h3>
+                        <table>
+                            <tr>
+                                <td>2019.4-2020.9</td>
+                                <th>디자인타임</th>
+                                <td>디자인팀/주임</td>
+                            </tr>
+                            <tr>
+                                <td>2015.5-2019.4</td>
+                                <th>서현디자인</th>
+                                <td>디자인팀/주임</td>
+                            </tr>
+                            <tr>
+                                <td>2013.8-2015.3</td>
+                                <th>다원디자인</th>
+                                <td>디자인팀/과장</td>
+                            </tr>
+                            <tr>
+                                <td>2012.8-2013.6</td>
+                                <th>토탈기획</th>
+                                <td>디자인팀/과장</td>
+                            </tr>
+                            <tr>
+                                <td>2012.4~2012.8</td>
+                                <th>스카이벨리</th>
+                                <td>디자인팀/디자이너</td>
+                            </tr>
+                            <tr>
+                                <td>2011.6-2012.4</td>
+                                <th>이미지네이션</th>
+                                <td>디자인팀/디자이너</td>
+                            </tr>
+                            <tr>
+                                <td>2009.9~2011.4</td>
+                                <th>토탈기획</th>
+                                <td>디자인팀/디자이너</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="career">
+                        <h3>SKILL</h3>
+                        <table id="skill">
+                            <tr>
+                                <td class="webicon"><img src="img/html5_w.png" alt="htmlicon"></td>
+                                <td class="webicon"><img src="img/css3_w.png" alt="cssicon"></td>
+                                <td class="webicon" colspan="2"><img src="img/JS_w.png" alt="jsicon"></td>
+                            </tr>
+                            <tr>
+                                <td class="other"><img src="img/jquery_w.png" alt="jqueryicon"></td>
+                                <td class="other"><img src="img/json_w.png" alt="jsonicon"></td>
+                                <td class="other" colspan="2"><img src="img/ajax.png" alt="ajaxicon"></td>
+                            </tr>
+                            <tr>
+                                <td class="symbol"><img src="img/adobe_ps.png" alt="psicon"></td>
+                                <td class="symbol"><img src="img/adobe_ai.png" alt="ilicon"></td>
+                                <td class="symbol"><img src="img/adobe_in.png" alt="indicon"></td>
+                                <td class="symbol"><img src="img/coreldraw.png" alt="colicon"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <!--프로필-->
+                <div class="profile">
+                    <div class="myphoto">
+                        <div class="profileimg">
+                            <img src="img/profile_photo.png" alt="myphoto">
+                        </div>
+                        
+                        <div class="profiletxt">
+                            <h3>유수진&ensp;<em>Yoo su Jin</em></h3>
+                            
+                            <table>
+                                <tr>
+                                    <th>BIRTH</th>
+                                    <td>2002. 01. 18.</td>
+                                </tr>
+                                <tr>
+                                    <th>MOBILE</th>
+                                    <td>010-4822-6807</td>
+                                </tr>
+                                <tr>
+                                    <th>E-MAIL</th>
+                                    <td>ysjn8969@naver.com</td>
+                                </tr>
+                                <tr>
+                                    <th>EDUCATION</th>
+                                    <td>인덕원고등학교<br>2020년 졸업</td>
+                                </tr>
+                            </table>
+                            
+                            <h5><em>WEB Publisher</em> ＆ Editorial Designer</h5>
+                            <p>편집디자이너의 경력과 노하우로 감각있는 디자인은 물론<br>
+                                과감한 인터페이스와 의미있는 상호작용을 통하여<br>
+                                웹 사이트 설계에 능력을 꽃 피우겠습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</html>
+</body>
+</html>
